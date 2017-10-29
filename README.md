@@ -2,10 +2,10 @@
 __Interact with the kitsu.io api using Go__</br>
 This project is in very early stages, currently it's only anime and manga search by name.
 
-### Install
+## Install
 `go get github.com/KurozeroPB/kitsu.go`
 
-### Usage
+## Usage
 Simple example usage:
 ```go
 package main
@@ -52,7 +52,7 @@ func main() {
 | query     | string        | The name of the producer you want to search for
 
 
-### TODO
+## TODO
 1. ~~Manga search~~
 2. ~~Character search~~
 3. ~~Producers search~~
