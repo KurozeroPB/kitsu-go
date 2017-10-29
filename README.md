@@ -50,12 +50,17 @@ func main() {
 |-----------|:-------------:|-------------|
 | query     | string        | The name of the producer you want to search for
 
+#### SearchUser(query)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| query     | string        | The name of the user you want to search for
+
 
 ## TODO
 1. ~~Manga search~~
 2. ~~Character search~~
 3. ~~Producers search~~
-4. Users search
+4. ~~Users search~~
 5. Drama search (?)
 6. Get anime by id
 7. Get manga by id
@@ -65,10 +70,6 @@ func main() {
 > (?) means I might skip it
 
 <!--
-Users search:
-https://kitsu.io/api/edge/users?filter[name]=
-http://docs.kitsu.apiary.io/#reference/users/users/fetch-collection
-
 Drama search:
 https://kitsu.io/api/edge/drama?filter[text]=
 http://docs.kitsu.apiary.io/#reference/media/drama/fetch-collection
