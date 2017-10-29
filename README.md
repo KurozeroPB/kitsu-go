@@ -1,6 +1,5 @@
 # kitsu.go
 __Interact with the kitsu.io api using Go__</br>
-This project is in very early stages, currently it's only anime and manga search by name.
 
 ## Install
 `go get github.com/KurozeroPB/kitsu.go`
