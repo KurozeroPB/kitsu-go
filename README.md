@@ -26,8 +26,8 @@ func main() {
   fmt.Println(anime.Attributes.PosterImage.Original)
 
   // Manga search
-  manga, e := kitsu.SearchManga("Citrus", 0)
-  if e != nil {
+  manga, err := kitsu.SearchManga("Citrus", 0)
+  if err != nil {
     fmt.Println(e)
     return
   }
