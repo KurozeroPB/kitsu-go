@@ -64,20 +64,16 @@ type Manga struct {
 // offset being the page offset
 func SearchManga(query string, offset int) (*Manga, error) {
 	uri := fmt.Sprintf("%s/manga?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
-
 	parJSON, e := gabs.ParseJSON(get(uri))
 	if e != nil {
 		return nil, e
 	}
-
 	manga := parJSON.Path("data").Data().([]interface{})
-
-	man := new(Manga)
-
 	resJSON, er := json.Marshal(manga[0])
 	if er != nil {
 		return nil, er
 	}
+	man := new(Manga)
 	err := json.Unmarshal(resJSON, &man)
 	if err != nil {
 		return nil, err

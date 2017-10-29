@@ -17,29 +17,45 @@ import (
 )
 
 func main() {
-  // Anime search
+  // Example to search for an anime
   anime, e := kitsu.SearchAnime("fate/apocrypha", 0)
   if e != nil {
     fmt.Println(e)
     return
   }
   fmt.Println(anime.Attributes.PosterImage.Original)
-
-  // Manga search
-  manga, err := kitsu.SearchManga("Citrus", 0)
-  if err != nil {
-    fmt.Println(e)
-    return
-  }
-  fmt.Println(manga.Attributes.PosterImage.Original)
 }
 ```
 
- TODO:
- -
+## Docs
+
+#### SearchAnime(query, offset)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| query     | string        | The anime you want to search
+| offset    | number        | Page offset
+
+#### SearchManga(query, offset)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| query     | string        | The manga you want to search
+| offset    | number        | Page offset
+
+#### SearchCharacter(query)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| query     | string        | The name of the character you want to search for
+
+#### SearchProducer(query, offset)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| query     | string        | The name of the producer you want to search for
+
+
+### TODO
 1. ~~Manga search~~
-2. Character search 
-3. Producers search
+2. ~~Character search~~
+3. ~~Producers search~~
 4. Users search
 5. Drama search (?)
 6. Get anime by id
@@ -47,15 +63,9 @@ func main() {
 8. Get user by id
 9. Get user stats by id
 
+> (?) means I might skip it
+
 <!--
-Character search:
-https://kitsu.io/api/edge/characters?filter[name]=
-http://docs.kitsu.apiary.io/#reference/characters-&-people/characters/fetch-collection
-
-Producers search:
-https://kitsu.io/api/edge/producers?filter[slug]=
-http://docs.kitsu.apiary.io/#reference/characters-&-people/producers/fetch-collection
-
 Users search:
 https://kitsu.io/api/edge/users?filter[name]=
 http://docs.kitsu.apiary.io/#reference/users/users/fetch-collection

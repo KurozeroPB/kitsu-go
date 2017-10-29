@@ -61,20 +61,16 @@ type Anime struct {
 // offset being the page offset
 func SearchAnime(query string, offset int) (*Anime, error) {
 	uri := fmt.Sprintf("%s/anime?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
-
 	parJSON, e := gabs.ParseJSON(get(uri))
 	if e != nil {
 		return nil, e
 	}
-
 	anime := parJSON.Path("data").Data().([]interface{})
-
-	ani := new(Anime)
-
 	resJSON, er := json.Marshal(anime[0]) // Right now I'm doing anime[0] because I have no idea how to handle it when it would return more than 1 result.
 	if er != nil {
 		return nil, er
 	}
+	ani := new(Anime)
 	err := json.Unmarshal(resJSON, &ani)
 	if err != nil {
 		return nil, err

@@ -9,7 +9,7 @@ import (
 
 const (
 	baseURL   = "https://kitsu.io/api/edge"
-	userAgent = "kitsu.go/v0.0.2"
+	userAgent = "kitsu.go/v0.0.3 - (github.com/KurozeroPB/kitsu.go)"
 )
 
 func executeRequest(request *http.Request, expectedStatus int) []byte {
@@ -34,9 +34,11 @@ func executeRequest(request *http.Request, expectedStatus int) []byte {
 	}
 	return buf.Bytes()
 }
+
 func newRequest(method string, url string) *http.Request {
 	return newUARequest(method, url, userAgent)
 }
+
 func newUARequest(method string, url string, ua string) *http.Request {
 	request, err := http.NewRequest(method, url, nil)
 	if err != nil {
@@ -47,12 +49,14 @@ func newUARequest(method string, url string, ua string) *http.Request {
 	request.Header.Set("Content-Type", "application/vnd.api+json")
 	return request
 }
+
 func safeGET(url string, expectedStatus int) []byte {
 	return executeRequest(
 		newRequest("GET", url),
 		expectedStatus,
 	)
 }
+
 func get(url string) []byte {
 	return safeGET(url, 200)
 }
