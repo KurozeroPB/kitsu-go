@@ -40,7 +40,12 @@ func main() {
 1. ~~Manga search~~
 2. Character search 
 3. Producers search
-4. Drama search (?)
+4. Users search
+5. Drama search (?)
+6. Get anime by id
+7. Get manga by id
+8. Get user by id
+9. Get user stats by id
 
 <!--
 Character search:
@@ -51,7 +56,27 @@ Producers search:
 https://kitsu.io/api/edge/producers?filter[slug]=
 http://docs.kitsu.apiary.io/#reference/characters-&-people/producers/fetch-collection
 
+Users search:
+https://kitsu.io/api/edge/users?filter[name]=
+http://docs.kitsu.apiary.io/#reference/users/users/fetch-collection
+
 Drama search:
 https://kitsu.io/api/edge/drama?filter[text]=
 http://docs.kitsu.apiary.io/#reference/media/drama/fetch-collection
+
+Get anime by id:
+https://kitsu.io/api/edge/anime/id
+http://docs.kitsu.apiary.io/#reference/media/anime/fetch-resource
+
+Get manga by id:
+https://kitsu.io/api/edge/manga/id
+http://docs.kitsu.apiary.io/#reference/media/manga/fetch-resource
+
+Get user by id:
+https://kitsu.io/api/edge/users/id
+http://docs.kitsu.apiary.io/#reference/users/users/fetch-resource
+
+Get user stats by id:
+https://kitsu.io/api/edge/stats/id
+http://docs.kitsu.apiary.io/#reference/users/stats/fetch-resource
 -->
