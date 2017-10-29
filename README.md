@@ -26,3 +26,23 @@ func main() {
 }
 ```
 
+ TODO:
+ -
+1. Manga search
+2. Character search 
+3. Producers search
+4. Drama search (?)
+
+<!--
+Character search:
+https://kitsu.io/api/edge/characters?filter[name]=
+http://docs.kitsu.apiary.io/#reference/characters-&-people/characters/fetch-collection
+
+Producers search:
+https://kitsu.io/api/edge/producers?filter[slug]=
+http://docs.kitsu.apiary.io/#reference/characters-&-people/producers/fetch-collection
+
+Drama search:
+https://kitsu.io/api/edge/drama?filter[text]=
+http://docs.kitsu.apiary.io/#reference/media/drama/fetch-collection
+-->
