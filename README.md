@@ -46,7 +46,7 @@ func main() {
 |-----------|:-------------:|-------------|
 | query     | string        | The name of the character you want to search for
 
-#### SearchProducer(query, offset)
+#### SearchProducer(query)
 | Parameter | Type          | Description |
 |-----------|:-------------:|-------------|
 | query     | string        | The name of the producer you want to search for
