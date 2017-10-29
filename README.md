@@ -1,6 +1,6 @@
 # kitsu.go
 __Interact with the kitsu.io api using Go__</br>
-This project is in very early stages, currently you can only search for anime I'm planning on adding manga search next.
+This project is in very early stages, currently it's only anime and manga search by name.
 
 ### Install
 `go get github.com/KurozeroPB/kitsu.go`
@@ -17,18 +17,27 @@ import (
 )
 
 func main() {
+  // Anime search
   anime, e := kitsu.SearchAnime("fate/apocrypha", 0)
   if e != nil {
-  fmt.Println(e)
+    fmt.Println(e)
     return
   }
   fmt.Println(anime.Attributes.PosterImage.Original)
+
+  // Manga search
+  manga, e := kitsu.SearchManga("Citrus", 0)
+  if e != nil {
+    fmt.Println(e)
+    return
+  }
+  fmt.Println(manga.Attributes.PosterImage.Original)
 }
 ```
 
  TODO:
  -
-1. Manga search
+1. ~~Manga search~~
 2. Character search 
 3. Producers search
 4. Drama search (?)
