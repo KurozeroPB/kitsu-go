@@ -156,3 +156,66 @@ func GetUser(id int) (*UserByID, error) {
 	}
 	return u, nil
 }
+
+// Stats struct with all the stats from the user
+type Stats struct {
+	ID    string `json:"id"`
+	Type  string `json:"type"`
+	Links struct {
+		Self string `json:"self"`
+	} `json:"links"`
+	Attributes struct {
+		CreatedAt string `json:"createdAt"`
+		UpdatedAt string `json:"updatedAt"`
+		Kind      string `json:"kind"`
+		StatsData struct {
+			Total         int      `json:"total"`
+			TotalMedia    int      `json:"total_media"`
+			Activity      []string `json:"activity"`
+			AllCategories struct {
+				War   int `json:"war"`
+				Asia  int `json:"asia"`
+				Cops  int `json:"cops"`
+				Idol  int `json:"idol"`
+				Mars  int `json:"mars"`
+				Navy  int `json:"navy"`
+				Past  int `json:"past"`
+				Alien int `json:"alien"`
+				Angel int `json:"angel"`
+				Angst int `json:"angst"`
+				China int `json:"china"`
+				Crime int `json:"crime"`
+				Deity int `json:"deity"`
+				Demon int `json:"demon"`
+			} `json:"all_categories"`
+			AllTime struct {
+				TotalTime     int `json:"total_time"`
+				TotalMedia    int `json:"total_media"`
+				TotalProgress int `json:"total_progress"`
+			} `json:"all_time"`
+			AllYears struct{} `json:"all_years"`
+		} `json:"statsData"`
+	} `json:"attributes"`
+	Relationships struct{} `json:"relationships"`
+}
+
+// GetStats get the stats of a user by his/her id from kitsu.io
+// id of course being the id
+func GetStats(id int) (*Stats, error) {
+	uri := fmt.Sprintf("%s/stats/%v", baseURL, id)
+	parJSON, e := gabs.ParseJSON(get(uri))
+	if e != nil {
+		return nil, e
+	}
+	stats := parJSON.Path("data").Data().(map[string]interface{})
+	resJSON, er := json.Marshal(stats)
+	if er != nil {
+		return nil, er
+	}
+	sts := new(Stats)
+	err := json.Unmarshal(resJSON, &sts)
+	if err != nil {
+		return nil, err
+	}
+	return sts, nil
+}

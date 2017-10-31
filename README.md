@@ -85,10 +85,4 @@ func main() {
 6. ~~Get anime by id~~
 7. ~~Get manga by id~~
 8. ~~Get user by id~~
-9. Get user stats by id
-
-<!--
-Get user stats by id:
-https://kitsu.io/api/edge/stats/id
-http://docs.kitsu.apiary.io/#reference/users/stats/fetch-resource
--->
+9. ~~Get user stats by id~~
