@@ -35,23 +35,31 @@ func executeRequest(request *http.Request, expectedStatus int) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func newRequest(method string, url string) *http.Request {
-	return newUARequest(method, url, userAgent)
+func newRequest(method string, url string) (*http.Request, error) {
+	req, err := newUARequest(method, url, userAgent)
+	if err != nil {
+		return nil, err
+	}
+	return req, nil
 }
 
-func newUARequest(method string, url string, ua string) *http.Request {
+func newUARequest(method string, url string, ua string) (*http.Request, error) {
 	request, err := http.NewRequest(method, url, nil)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	request.Header.Set("User-Agent", ua)
 	request.Header.Set("Accept", "application/vnd.api+json")
 	request.Header.Set("Content-Type", "application/vnd.api+json")
-	return request
+	return request, nil
 }
 
 func safeGET(url string, expectedStatus int) ([]byte, error) {
-	byt, err := executeRequest(newRequest("GET", url), expectedStatus)
+	req, e := newRequest("GET", url)
+	if e != nil {
+		return nil, e
+	}
+	byt, err := executeRequest(req, expectedStatus)
 	if err != nil {
 		return nil, err
 	}
