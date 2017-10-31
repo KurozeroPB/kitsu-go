@@ -76,6 +76,11 @@ func main() {
 |-----------|:-------------:|-------------|
 | id        | int           | The id of the user you want to get
 
+#### GetStats(id)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| id        | int           | The id of the user you want to get the stats from
+
 ## TODO
 1. ~~Manga search~~
 2. ~~Character search~~
