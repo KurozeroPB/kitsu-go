@@ -55,11 +55,11 @@ func main() {
 |-----------|:-------------:|-------------|
 | query     | string        | The name of the user you want to search for
 
-> There are currently no dramas on kitsu so this will return an error until they add dramas to the website.
 #### SearchDrama(query)
 | Parameter | Type          | Description |
 |-----------|:-------------:|-------------|
 | query     | string        | The drama you want to search
+> There are currently no dramas on kitsu so this will return an error until they add dramas to the website.
 
 #### GetAnime(id)
 | Parameter | Type          | Description |
@@ -78,10 +78,6 @@ func main() {
 9. Get user stats by id
 
 <!--
-Get anime by id:
-https://kitsu.io/api/edge/anime/id
-http://docs.kitsu.apiary.io/#reference/media/anime/fetch-resource
-
 Get manga by id:
 https://kitsu.io/api/edge/manga/id
 http://docs.kitsu.apiary.io/#reference/media/manga/fetch-resource
