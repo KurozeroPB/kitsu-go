@@ -32,13 +32,13 @@ func main() {
 | Parameter | Type          | Description |
 |-----------|:-------------:|-------------|
 | query     | string        | The anime you want to search
-| offset    | number        | Page offset
+| offset    | int        | Page offset
 
 #### SearchManga(query, offset)
 | Parameter | Type          | Description |
 |-----------|:-------------:|-------------|
 | query     | string        | The manga you want to search
-| offset    | number        | Page offset
+| offset    | int        | Page offset
 
 #### SearchCharacter(query)
 | Parameter | Type          | Description |
@@ -60,6 +60,11 @@ func main() {
 | Parameter | Type          | Description |
 |-----------|:-------------:|-------------|
 | query     | string        | The drama you want to search
+
+#### GetAnime(id)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| id        | int           | The id of the anime you want to get
 
 ## TODO
 1. ~~Manga search~~
