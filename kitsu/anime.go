@@ -78,11 +78,6 @@ func SearchAnime(query string, offset int) (*Anime, error) {
 	return ani, nil
 }
 
-/*
-https://kitsu.io/api/edge/anime/id
-http://docs.kitsu.apiary.io/#reference/media/anime/fetch-resource
-*/
-
 // AnimeByID holds the data from searching an anime by the id
 type AnimeByID struct {
 	ID    string `json:"id"`

@@ -66,6 +66,11 @@ func main() {
 |-----------|:-------------:|-------------|
 | id        | int           | The id of the anime you want to get
 
+#### GetManga(id)
+| Parameter | Type          | Description |
+|-----------|:-------------:|-------------|
+| id        | int           | The id of the manga you want to get
+
 ## TODO
 1. ~~Manga search~~
 2. ~~Character search~~
@@ -73,15 +78,11 @@ func main() {
 4. ~~Users search~~
 5. ~~Drama search~~
 6. ~~Get anime by id~~
-7. Get manga by id
+7. ~~Get manga by id~~
 8. Get user by id
 9. Get user stats by id
 
 <!--
-Get manga by id:
-https://kitsu.io/api/edge/manga/id
-http://docs.kitsu.apiary.io/#reference/media/manga/fetch-resource
-
 Get user by id:
 https://kitsu.io/api/edge/users/id
 http://docs.kitsu.apiary.io/#reference/users/users/fetch-resource
