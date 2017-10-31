@@ -72,7 +72,7 @@ func main() {
 3. ~~Producers search~~
 4. ~~Users search~~
 5. ~~Drama search~~
-6. Get anime by id
+6. ~~Get anime by id~~
 7. Get manga by id
 8. Get user by id
 9. Get user stats by id
