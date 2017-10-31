@@ -65,7 +65,11 @@ type User struct {
 // query being the user to search for
 func SearchUser(query string) (*User, error) {
 	uri := fmt.Sprintf("%s/users?filter[name]=%s", baseURL, query)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}
@@ -140,7 +144,11 @@ type UserByID struct {
 // id of course being the id
 func GetUser(id int) (*UserByID, error) {
 	uri := fmt.Sprintf("%s/users/%v", baseURL, id)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}
@@ -203,7 +211,11 @@ type Stats struct {
 // id of course being the id
 func GetStats(id int) (*Stats, error) {
 	uri := fmt.Sprintf("%s/stats/%v", baseURL, id)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}

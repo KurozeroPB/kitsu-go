@@ -66,7 +66,11 @@ type Drama struct {
 // query being the producer to search for
 func SearchDrama(query string) (*Drama, error) {
 	uri := fmt.Sprintf("%s/drama?filter[text]=%s", baseURL, query)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}

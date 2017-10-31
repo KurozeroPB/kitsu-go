@@ -61,7 +61,11 @@ type Anime struct {
 // offset being the page offset
 func SearchAnime(query string, offset int) (*Anime, error) {
 	uri := fmt.Sprintf("%s/anime?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}
@@ -132,7 +136,11 @@ type AnimeByID struct {
 // id of course being the id
 func GetAnime(id int) (*AnimeByID, error) {
 	uri := fmt.Sprintf("%s/anime/%v", baseURL, id)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}

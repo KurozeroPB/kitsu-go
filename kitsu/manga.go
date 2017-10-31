@@ -64,7 +64,11 @@ type Manga struct {
 // offset being the page offset
 func SearchManga(query string, offset int) (*Manga, error) {
 	uri := fmt.Sprintf("%s/manga?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}
@@ -137,7 +141,11 @@ type MangaByID struct {
 // id of course being the id
 func GetManga(id int) (*MangaByID, error) {
 	uri := fmt.Sprintf("%s/manga/%v", baseURL, id)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}

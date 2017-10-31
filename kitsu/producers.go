@@ -34,7 +34,11 @@ type Producers struct {
 // query being the producer to search for
 func SearchProducer(query string) (*Producers, error) {
 	uri := fmt.Sprintf("%s/producers?filter[slug]=%s", baseURL, query)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}

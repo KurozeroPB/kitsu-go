@@ -12,27 +12,27 @@ const (
 	userAgent = "kitsu.go/v0.0.4 - (github.com/KurozeroPB/kitsu.go)"
 )
 
-func executeRequest(request *http.Request, expectedStatus int) []byte {
+func executeRequest(request *http.Request, expectedStatus int) ([]byte, error) {
 	client := http.Client{}
 	response, err := client.Do(request)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 	defer response.Body.Close()
 	buf := bytes.NewBuffer(nil)
 	_, err = io.Copy(buf, response.Body)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 	if response.StatusCode != expectedStatus {
-		panic(fmt.Errorf(
+		return nil, fmt.Errorf(
 			"Expected status %d; Got %d \nResponse: %#v",
 			expectedStatus,
 			response.StatusCode,
 			buf.String(),
-		))
+		)
 	}
-	return buf.Bytes()
+	return buf.Bytes(), nil
 }
 
 func newRequest(method string, url string) *http.Request {
@@ -50,13 +50,18 @@ func newUARequest(method string, url string, ua string) *http.Request {
 	return request
 }
 
-func safeGET(url string, expectedStatus int) []byte {
-	return executeRequest(
-		newRequest("GET", url),
-		expectedStatus,
-	)
+func safeGET(url string, expectedStatus int) ([]byte, error) {
+	byt, err := executeRequest(newRequest("GET", url), expectedStatus)
+	if err != nil {
+		return nil, err
+	}
+	return byt, nil
 }
 
-func get(url string) []byte {
-	return safeGET(url, 200)
+func get(url string) ([]byte, error) {
+	byt, err := safeGET(url, 200)
+	if err != nil {
+		return nil, err
+	}
+	return byt, nil
 }

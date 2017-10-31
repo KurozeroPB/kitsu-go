@@ -31,7 +31,11 @@ type Character struct {
 // query being the character to search for
 func SearchCharacter(query string) (*Character, error) {
 	uri := fmt.Sprintf("%s/characters?filter[name]=%s", baseURL, query)
-	parJSON, e := gabs.ParseJSON(get(uri))
+	byt, er := get(uri)
+	if er != nil {
+		return nil, er
+	}
+	parJSON, e := gabs.ParseJSON(byt)
 	if e != nil {
 		return nil, e
 	}
