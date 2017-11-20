@@ -5,6 +5,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -65,7 +66,8 @@ type Drama struct {
 // SearchDrama search for a drama on kitsu.io
 // query being the producer to search for
 func SearchDrama(query string) (*Drama, error) {
-	uri := fmt.Sprintf("%s/drama?filter[text]=%s", baseURL, query)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/drama?filter[text]=%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

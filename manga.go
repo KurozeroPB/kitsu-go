@@ -3,6 +3,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -63,7 +64,8 @@ type Manga struct {
 // query being the manga to search for
 // offset being the page offset
 func SearchManga(query string, offset int) (*Manga, error) {
-	uri := fmt.Sprintf("%s/manga?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/manga?filter[text]=%s&page[offset]=%v", baseURL, newQuery, offset)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
@@ -140,7 +142,8 @@ type MangaByID struct {
 // GetManga will fetch a manga with the given id from kitsu.io
 // id of course being the id
 func GetManga(id int) (*MangaByID, error) {
-	uri := fmt.Sprintf("%s/manga/%v", baseURL, id)
+	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
+	uri := fmt.Sprintf("%s/manga/%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

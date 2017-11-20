@@ -3,6 +3,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -33,7 +34,8 @@ type Producers struct {
 // SearchProducer search for a producer on kitsu.io
 // query being the producer to search for
 func SearchProducer(query string) (*Producers, error) {
-	uri := fmt.Sprintf("%s/producers?filter[slug]=%s", baseURL, query)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/producers?filter[slug]=%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

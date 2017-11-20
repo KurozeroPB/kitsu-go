@@ -3,6 +3,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -64,7 +65,8 @@ type User struct {
 // SearchUser search for a user on kitsu.io
 // query being the user to search for
 func SearchUser(query string) (*User, error) {
-	uri := fmt.Sprintf("%s/users?filter[name]=%s", baseURL, query)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/users?filter[name]=%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
@@ -143,7 +145,8 @@ type UserByID struct {
 // GetUser get a user by his/her id from kitsu.io
 // id of course being the id
 func GetUser(id int) (*UserByID, error) {
-	uri := fmt.Sprintf("%s/users/%v", baseURL, id)
+	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
+	uri := fmt.Sprintf("%s/users/%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
@@ -210,7 +213,8 @@ type Stats struct {
 // GetStats get the stats of a user by his/her id from kitsu.io
 // id of course being the id
 func GetStats(id int) (*Stats, error) {
-	uri := fmt.Sprintf("%s/stats/%v", baseURL, id)
+	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
+	uri := fmt.Sprintf("%s/stats/%v", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

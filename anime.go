@@ -3,6 +3,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -60,7 +61,8 @@ type Anime struct {
 // query being the anime to search for
 // offset being the page offset
 func SearchAnime(query string, offset int) (*Anime, error) {
-	uri := fmt.Sprintf("%s/anime?filter[text]=%s&page[offset]=%v", baseURL, query, offset)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/anime?filter[text]=%s&page[offset]=%v", baseURL, newQuery, offset)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
@@ -135,7 +137,8 @@ type AnimeByID struct {
 // GetAnime will fetch an anime with the given id from kitsu.io
 // id of course being the id
 func GetAnime(id int) (*AnimeByID, error) {
-	uri := fmt.Sprintf("%s/anime/%v", baseURL, id)
+	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
+	uri := fmt.Sprintf("%s/anime/%v", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

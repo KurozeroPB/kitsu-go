@@ -3,6 +3,7 @@ package kitsu
 import (
 	"encoding/json"
 	"fmt"
+	"net/url"
 
 	"github.com/Jeffail/gabs"
 )
@@ -30,7 +31,8 @@ type Character struct {
 // SearchCharacter search for a character on kitsu.io
 // query being the character to search for
 func SearchCharacter(query string) (*Character, error) {
-	uri := fmt.Sprintf("%s/characters?filter[name]=%s", baseURL, query)
+	newQuery := url.QueryEscape(query)
+	uri := fmt.Sprintf("%s/characters?filter[name]=%s", baseURL, newQuery)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
