@@ -45,6 +45,10 @@ func SearchProducer(query string) (*Producers, error) {
 		return nil, e
 	}
 	producer := parJSON.Path("data").Data().([]interface{})
+	if len(producer) <= 0 {
+		err := fmt.Errorf("Could not find any producers with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(producer[0])
 	if er != nil {
 		return nil, er

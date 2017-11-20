@@ -72,6 +72,10 @@ func SearchAnime(query string, offset int) (*Anime, error) {
 		return nil, e
 	}
 	anime := parJSON.Path("data").Data().([]interface{})
+	if len(anime) <= 0 {
+		err := fmt.Errorf("Could not find any anime with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(anime[0]) // Right now I'm doing anime[0] because I have no idea how to handle it when it would return more than 1 result.
 	if er != nil {
 		return nil, er
@@ -137,8 +141,7 @@ type AnimeByID struct {
 // GetAnime will fetch an anime with the given id from kitsu.io
 // id of course being the id
 func GetAnime(id int) (*AnimeByID, error) {
-	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
-	uri := fmt.Sprintf("%s/anime/%v", baseURL, newQuery)
+	uri := fmt.Sprintf("%s/anime/%d", baseURL, id)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

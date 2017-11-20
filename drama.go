@@ -77,6 +77,10 @@ func SearchDrama(query string) (*Drama, error) {
 		return nil, e
 	}
 	drama := parJSON.Path("data").Data().([]interface{})
+	if len(drama) <= 0 {
+		err := fmt.Errorf("Could not find any dramas with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(drama[0])
 	if er != nil {
 		return nil, er

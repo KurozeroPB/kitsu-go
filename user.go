@@ -76,6 +76,10 @@ func SearchUser(query string) (*User, error) {
 		return nil, e
 	}
 	user := parJSON.Path("data").Data().([]interface{})
+	if len(user) <= 0 {
+		err := fmt.Errorf("Could not find any users with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(user[0])
 	if er != nil {
 		return nil, er
@@ -145,8 +149,7 @@ type UserByID struct {
 // GetUser get a user by his/her id from kitsu.io
 // id of course being the id
 func GetUser(id int) (*UserByID, error) {
-	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
-	uri := fmt.Sprintf("%s/users/%s", baseURL, newQuery)
+	uri := fmt.Sprintf("%s/users/%d", baseURL, id)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er
@@ -213,8 +216,7 @@ type Stats struct {
 // GetStats get the stats of a user by his/her id from kitsu.io
 // id of course being the id
 func GetStats(id int) (*Stats, error) {
-	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
-	uri := fmt.Sprintf("%s/stats/%v", baseURL, newQuery)
+	uri := fmt.Sprintf("%s/stats/%d", baseURL, id)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

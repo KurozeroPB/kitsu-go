@@ -75,6 +75,10 @@ func SearchManga(query string, offset int) (*Manga, error) {
 		return nil, e
 	}
 	manga := parJSON.Path("data").Data().([]interface{})
+	if len(manga) <= 0 {
+		err := fmt.Errorf("Could not find any manga with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(manga[0])
 	if er != nil {
 		return nil, er
@@ -142,8 +146,7 @@ type MangaByID struct {
 // GetManga will fetch a manga with the given id from kitsu.io
 // id of course being the id
 func GetManga(id int) (*MangaByID, error) {
-	newQuery := url.QueryEscape(fmt.Sprintf("%d", id))
-	uri := fmt.Sprintf("%s/manga/%s", baseURL, newQuery)
+	uri := fmt.Sprintf("%s/manga/%d", baseURL, id)
 	byt, er := get(uri)
 	if er != nil {
 		return nil, er

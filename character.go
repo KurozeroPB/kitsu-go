@@ -42,6 +42,10 @@ func SearchCharacter(query string) (*Character, error) {
 		return nil, e
 	}
 	character := parJSON.Path("data").Data().([]interface{})
+	if len(character) <= 0 {
+		err := fmt.Errorf("Could not find any characters with the query: %s", query)
+		return nil, err
+	}
 	resJSON, er := json.Marshal(character[0])
 	if er != nil {
 		return nil, er

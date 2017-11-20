@@ -9,7 +9,7 @@ import (
 
 const (
 	baseURL   = "https://kitsu.io/api/edge"
-	userAgent = "kitsu.go/v0.0.6 - (github.com/KurozeroPB/kitsu.go)"
+	userAgent = "kitsu.go/v0.0.7 - (github.com/KurozeroPB/kitsu.go)"
 )
 
 func get(url string) ([]byte, error) {
