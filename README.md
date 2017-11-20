@@ -1,8 +1,8 @@
-# kitsu.go
+# kitsu-go
 __Interact with the kitsu.io api using Go__</br>
 
 ## Install
-`go get github.com/KurozeroPB/kitsu.go`
+`go get github.com/KurozeroPB/kitsu-go`
 
 ## Usage
 Simple example usage:
@@ -12,7 +12,7 @@ package main
 import (
   "fmt"
 
-  "github.com/KurozeroPB/kitsu.go"
+  "github.com/KurozeroPB/kitsu-go"
 )
 
 func main() {
