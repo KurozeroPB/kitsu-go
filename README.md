@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/KurozeroPB/kitsu-go)](https://goreportcard.com/report/github.com/KurozeroPB/kitsu-go)
+
 # kitsu-go
 __Interact with the kitsu.io api using Go__</br>
 
